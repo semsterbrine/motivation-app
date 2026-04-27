@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Motivation App</title>
+</head>
+<body style="text-align:center; font-family:Arial; padding-top:100px;">
+
+<h1>Your Motivation Code</h1>
+<h2 id="code">Loading...</h2>
+<p id="message"></p>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAmERxnOnCIWx9pE4lLh4_mUctwz8CiyY0",
+  authDomain: "motivationapp-bb5e3.firebaseapp.com",
+  projectId: "motivationapp-bb5e3",
+  storageBucket: "motivationapp-bb5e3.firebasestorage.app",
+  messagingSenderId: "670493392229",
+  appId: "1:670493392229:web:19ce53aac11ee43389b58c",
+  measurementId: "G-V3QSVJ9HW1"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const messages = [
+  "Keep going, you're closer than you think.",
+  "Discipline beats motivation.",
+  "Small steps lead to big success.",
+  "Believe in yourself."
+];
+
+function makeCode() {
+  return "RISE-" + Math.random().toString(36).substring(2,8).toUpperCase();
+}
+
+async function getCode() {
+  let code;
+  let exists = true;
+
+  while (exists) {
+    code = makeCode();
+    const ref = doc(db, "codes", code);
+    const snap = await getDoc(ref);
+
+    if (!snap.exists()) {
+      exists = false;
+      await setDoc(ref, { created: new Date() });
+    }
+  }
+
+  return code;
+}
+
+async function start() {
+  const code = await getCode();
+  const msg = messages[Math.floor(Math.random()*messages.length)];
+
+  document.getElementById("code").innerText = code;
+  document.getElementById("message").innerText = msg;
+}
+
+start();
+</script>
+
+</body>
+</html>
