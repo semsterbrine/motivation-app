@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Motivation App</title>
 
-<style>
+  <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -18,7 +18,7 @@
     /* RGB animated gradient */
     background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
     background-size: 1400% 1400%;
-    animation: rgbFlow 25s ease infinite;
+    animation: rgbFlow 15s ease infinite;
   }
 
   @keyframes rgbFlow {
@@ -84,12 +84,10 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const messages = [
- "You shine in ways that continue to surprise even you."
-
-"Your brightness is not limited by circumstances."
-
-"You are becoming more luminous with every breath."
-
+  "a",
+  "b",
+  "c",
+  "d"
 ];
 
 function makeCode() {
