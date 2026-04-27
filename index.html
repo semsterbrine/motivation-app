@@ -1,14 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Motivation App</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff512f, #dd2476);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    .box {
+      text-align: center;
+      background: rgba(255,255,255,0.1);
+      padding: 40px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    #code {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    #message {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Desktop enhancement */
+    @media (min-width: 768px) {
+      .box {
+        max-width: 500px;
+        padding: 60px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      #code {
+        font-size: 3rem;
+      }
+
+      #message {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
 </head>
-<body style="text-align:center; font-family:Arial; padding-top:100px;">
+<body>
 
-<h1>Your Motivation Code</h1>
-<h2 id="code">Loading...</h2>
-<p id="message"></p>
-
+<div class="box">
+  <h1>Your Motivation Code</h1>
+  <h2 id="code">Loading...</h2>
+  <p id="message"></p>
+</div>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
